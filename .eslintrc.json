@@ -1,0 +1,17 @@
+{
+    "root": true,
+    "env": {
+        "browser": 1,
+        "es6": 1
+    },
+    "rules": {
+        "quotes": [1, "single"],
+        "eqeqeq": 1,
+        "strict": 1
+    },
+    "ecmaFeatures": {
+        "blockBindings": true,
+        "arrowFunctions": true,
+        "templateStrings": true
+    }
+}
