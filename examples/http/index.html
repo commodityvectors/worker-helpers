@@ -12,7 +12,7 @@
             'use strict';
 
             const photosWorker = new Worker('/examples/http/http-get.worker.js');
-            photosWorker.onmessage = (e) => {
+            photosWorker.addEventListener('message', (e) => {
                 const photos = e.data.photos;
                 const photoList = document.getElementById('photos');
                 photoList.innerHTML = photos.reduce((listPhoto, photo) => {
@@ -21,7 +21,7 @@
                     return listPhoto + item.outerHTML;
                 }, '');
                 document.getElementById('loading').remove();
-            };
+            });
             photosWorker.postMessage({});
 
 
@@ -31,9 +31,9 @@
                 userId: 1
             };
             const postWorker = new Worker('/examples/http/http-post.worker.js');
-            postWorker.onmessage = (e) => {
+            postWorker.addEventListener('message', (e) => {
                 console.log('New POST', e.data);
-            };
+            });
             postWorker.postMessage(newPost);
         </script>
     </body>

@@ -45,7 +45,7 @@
         });
     }
 
-    var http = {
+    const http = {
         run: run,
         get: (url, params) => {
             var parsedParams = parseURLParams(url, params);
