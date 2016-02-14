@@ -68,4 +68,4 @@
 
     c.http = http;
     return http;
-})((module ? module.exports : undefined) || self || window);
+})(exports || self || window);
