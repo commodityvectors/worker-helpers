@@ -5,7 +5,8 @@
   "author": "Rafael Grillo <grillorafael@gmail.com> (http://rgrillo.com)",
   "license": "MIT",
   "scripts": {
-      "test": "jest --watch"
+      "test": "jest",
+      "test:watch": "jest --watch"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
