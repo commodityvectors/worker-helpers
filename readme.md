@@ -33,3 +33,11 @@ var object = {
 const value = utils.getProperty(object, 'c.j.k'); // 1
 const arrayValue = utils.getProperty(object, '0.a'); // 1 it works on arrays as well
 ```
+
+#### groupBy
+Group an array of objects by a given key
+```JS
+importScripts('modules/utils.js');
+var array = [{type: 'a', value: 1}, {type: 'a', value:2}];
+utils.groupBy(array, 'type'); // { a: [{type: 'a', value: 1}, {type: 'a', value:2}] }
+```
