@@ -19,7 +19,7 @@ const copy = utils.copy(array);
 
 #### getProperty
 Provides a handy way to fetch an object property by a given path
-```
+```JS
 importScripts('modules/utils.js');
 var array = [{a: 1}, {a: { b: 1 }}];
 var object = {
