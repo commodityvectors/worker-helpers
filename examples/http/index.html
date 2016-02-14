@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Web Worker Helper - Examples</title>
+    </head>
+    <body>
+        <div id="loading">Loading</div>
+        <ul id="photos"></ul>
+
+        <script>
+            'use strict';
+
+            const photosWorker = new Worker('/examples/http/http-get.worker.js');
+            photosWorker.onmessage = (e) => {
+                const photos = e.data.photos;
+                const photoList = document.getElementById('photos');
+                photoList.innerHTML = photos.reduce((listPhoto, photo) => {
+                    const item = document.createElement('li');
+                    item.innerHTML = `<a target="_blank" href="${photo.url}">${photo.title}</a>`;
+                    return listPhoto + item.outerHTML;
+                }, '');
+                document.getElementById('loading').remove();
+            };
+            photosWorker.postMessage({});
+
+
+            const newPost = {
+                title: 'foo',
+                body: 'bar',
+                userId: 1
+            };
+            const postWorker = new Worker('/examples/http/http-post.worker.js');
+            postWorker.onmessage = (e) => {
+                console.log('New POST', e.data);
+            };
+            postWorker.postMessage(newPost);
+        </script>
+    </body>
+</html>
