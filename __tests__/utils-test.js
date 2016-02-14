@@ -9,12 +9,48 @@
 
     describe('clone', () => {
         it('clones an object', function() {
-            let object = {a: 1, b: 2};
+            let object = {
+                a: 1,
+                b: 2
+            };
             let clone = utils.copy(object);
             clone.a = 2;
 
             expect(clone).not.toBe(object);
             expect(object.a).not.toBe(2);
+        });
+    });
+
+    describe('groupBy', () => {
+        let elements;
+        beforeEach(() => {
+            elements = [{
+                category: 'Test',
+                name: 'Suit'
+            }, {
+                category: 'Test',
+                name: 'Suit 2'
+            }, {
+                category: 'Javascript',
+                name: 'Suit 3'
+            }];
+        });
+
+        function assertGroup(grouped) {
+            expect(Object.keys(grouped)).toEqual(['Test', 'Javascript']);
+            expect(grouped.Test.length).toEqual(2);
+            expect(grouped.Javascript.length).toEqual(1);
+            expect(grouped.Javascript).toEqual([elements[2]]);
+        }
+
+        it('groups by given property name', () => {
+            assertGroup(utils.groupBy(elements, 'category'));
+        });
+
+        it('groups by function that returns key', () => {
+            assertGroup(utils.groupBy(elements, (e) => {
+                return e.category;
+            }));
         });
     });
 
@@ -44,7 +80,9 @@
         });
 
         it('works on arrays as well', () => {
-            object = [{a: 1}]
+            object = [{
+                a: 1
+            }];
             expect(utils.getProperty(object, '0.a')).toBe(1);
         });
     });
